@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowRight, Clock, ShieldCheck, Zap } from 'lucide-react';
+import bannerImage from '../assets/images/greenpath_forest_banner_1791585835081.jpg';
 
 interface TypeformWelcomeProps {
   onStart: () => void;
@@ -25,7 +26,10 @@ export const TypeformWelcome: React.FC<TypeformWelcomeProps> = ({
     <div className="fixed inset-0 w-full h-full overflow-y-auto overflow-x-hidden flex flex-col justify-center items-center p-3 sm:p-6 md:p-8 z-30">
       {/* Full-Page Background Aerial Forest Image - 100% visible & sharp */}
       <img
-        src="/src/assets/images/greenpath_forest_banner_1791585835081.jpg"
+        src={bannerImage}
+        onError={(e) => {
+          (e.currentTarget as HTMLImageElement).src = '/forest-banner.jpg';
+        }}
         alt="Aerial view of road through forest canopy"
         className="fixed inset-0 w-full h-full object-cover object-center select-none pointer-events-none -z-20"
         referrerPolicy="no-referrer"
