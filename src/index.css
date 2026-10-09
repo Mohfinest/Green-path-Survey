@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Theme Tokens */
+    --color-forest: #144D30;
+    --color-forest-hover: #0E3B24;
+    --color-forest-active: #092B19;
+    --color-forest-surface: rgba(20, 77, 48, 0.05);
+    --color-solar: #E5A93C;
+    --color-bg-warm: #FAF9F5;
+    --color-charcoal: #1C1E21;
+    --color-muted: #57606A;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    background-color: var(--color-bg-warm);
+    color: var(--color-charcoal);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Touch-friendly inputs & prevention of iOS zoom */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  font-size: 16px !important;
+}
+
+/* Subtle, clean custom scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E2DFD8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C7C3B8;
+}
+
+/* Question Transitions (250–320ms duration) */
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typeform-slide-forward {
+  animation: slideUpFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.typeform-slide-backward {
+  animation: slideDownFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Reduced motion preference respect */
+@media (prefers-reduced-motion: reduce) {
+  .typeform-slide-forward,
+  .typeform-slide-backward {
+    animation: none !important;
+    transition: opacity 0.15s ease-in-out !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
